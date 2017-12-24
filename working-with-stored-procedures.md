@@ -36,7 +36,7 @@ I found in Visual Studio the solution for this problem. Lets take a look at this
 
 ##### Creating a DB Project
 
-Lets use our well known Northwind database as an example. Lets create a new "SQL Server Database project"
+Lets use our wellknown Northwind database as an example. Lets create a new "SQL Server Database project"
 
 ![New Project](https://raw.githubusercontent.com/kblok/tech-posts/master/images/newproject.png)
 
