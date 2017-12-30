@@ -36,7 +36,7 @@ I found in Visual Studio the solution for this problem. Lets take a look at this
 
 ##### Creating a DB Project
 
-Lets use our wellknown Northwind database as an example. Lets create a new "SQL Server Database project"
+Lets use our well-known Northwind database as an example. Lets create a new "SQL Server Database project"
 
 ![New Project](https://raw.githubusercontent.com/kblok/tech-posts/master/images/newproject.png)
 
@@ -56,8 +56,48 @@ Then you will need to setup the database connnection and import settings, lets k
  
 ### Decentralized
 
+Perfect, now we have our database under source control, now What?
+The next thing you must have is one database per developer which he can have the freedom to update and recreate when needed. You can accomplish this in 3 ways, ok there might be more that 3 ways but these are the 3 ways I know:
+
+#### One database in a shared server
+This could seems as the easiest solution if you already have one server used by all developers. You could use a naming convention to id each database, super super smart as `<MyProject>Dev<DevName>`.
+
+##### Pros
+* There is no much more to setup, just create one database per dev and thats all.
+* Collaboration. Devs can access each other database making easier to help each other.
+
+##### Cons
+* If you are not using a shared server right now you might need to setup one server and think about security, VPNs and things like that.
+* It might be a slower experience for the developer compared with a local environment.
+* One developer might slow down the only server if his doing some heavy task.
+
+#### LocalDB
+
+>LocalDB is a lightweight version of the SQL Server Express Database Engine that is targeted for program development.
+
+You might not know but if you have Visual Studio installed there is a high chance that you already have a LocalDB installed. You can check this out by opening the **SQL Server Object Explorer**
+
+<SQL Server object explorer Image>
+  
+If you don't find your LocalDB you can see how to install it (here)[https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-2016-express-localdb]. There are another versions you can install, for instance the full (Microsoft SQL Server Developer Edition)[https://blogs.technet.microsoft.com/dataplatforminsider/2016/03/31/microsoft-sql-server-developer-edition-is-now-free/]
+
+##### Pros
+* Your localDB is just there you just need to use it
+* It's a localDB you won't need a VPN or request access to a server
+
+##### Cons
+* As it will run on your hardware, running a SQL Server process could be quite expensive for you computer, slowing down your development process.
+
+#### Local Server on Docker
+
+This solution is similar to the localDB one but if you are using MacOS and run Visual Studio on a Virtual Machine running your SQL Server on a docker container on the MacOS this will speed up your Virtual Machine, I recommend this solution if you use MacOS.
+
+You can read about SQL Server running on docker [here](https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker)
 
 ### You need data to work
 
+
+
 ### DB Syncing tips
 
+### CI
