@@ -96,8 +96,67 @@ You can read about SQL Server running on docker [here](https://docs.microsoft.co
 
 ### You need data to work
 
+As each developer now would have his own database having data to create a create a useful ready to use database becomes another very important piece of the project. It's very easy to create all these data if you already have an existing database.
 
+First lets create a Data folder where we'll save all our insert script data.
 
-### DB Syncing tips
+<Create data folder image>
+  
+(SQL Server Management Studio)[https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms] has very cool tool to generate scripts, it is call... drum rolls... Generate Scripts!
+ 
+ <Generate scripts image>
+  
+Once there we need to pick the tables we wan't to generate:
+ 
+<PickTable images>
+  
+Then we select the location, lets select the data folder we created on the SQL project
+
+<Select location image>
+
+We have to go to the Advanced option and select that we only want the data
+
+<setup data only>
+  
+And we are done!
+
+<voila image>
+  
+Now if we go back to the SQL Project we'll see all the scripts we just generated, lets include those files in the project
+
+<AddScriptsToProject image>
+<AddScriptsToProject2 image>
+ 
+By default, when we include files in a project, the Build Action is set to **Build**, but as these files are just insert scripts we need to set them to **None**
+
+<DoNotBuildDataScripts image>
+  
+So, How do we make use of these scripts? We need to create a Post Deployment Script and include all these inserts there
+
+<PostScriptFile image>
+  
+So now we can complete this file with all the insert scripts
+
+<CompletePostBuildScript image>
+  
+### DB Syncing
+
+Perfect! Now we have a SQL Project, we our tables, our stored procedures and even our test data! Now we have to use this.
+
+#### Publish tool
+
+The publish tool is the tool you would use when you want to create the database from scratch. So lets go to the publish option:
+
+<publish option>
+
+Once there we just need to pick our connection string and the destination database
+
+<Publish Select Database image>
+  
+Under the advanced sections there are some interesting options, like "Always re-create database" or "Block incremental deployment if data loss might occur"
+
+<Publish Advanced image
 
 ### CI
+
+### Some final tips
