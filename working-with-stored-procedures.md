@@ -104,7 +104,7 @@ First lets create a Data folder where we'll save all our insert script data.
   
 (SQL Server Management Studio)[https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms] has very cool tool to generate scripts, it is call... drum rolls... Generate Scripts!
  
- <Generate scripts image>
+<Generate scripts image>
   
 Once there we need to pick the tables we wan't to generate:
  
@@ -147,16 +147,51 @@ Perfect! Now we have a SQL Project, we our tables, our stored procedures and eve
 
 The publish tool is the tool you would use when you want to create the database from scratch. So lets go to the publish option:
 
+
 <publish option>
+  
 
 Once there we just need to pick our connection string and the destination database
 
+
 <Publish Select Database image>
-  
+ 
 Under the advanced sections there are some interesting options, like "Always re-create database" or "Block incremental deployment if data loss might occur"
 
-<Publish Advanced image
+<Publish Advanced image>
+
+Then just hit publish and voilà you have a new database with all your tables populated and ready to use!
+
+#### Schema Compare tool
+
+The compare tool will be the option that you would use every day, as you might guess, it will compare your SQL code and your database and impact those changes:
+
+<Schema compare option>
+
+Once there you will be able to see not only which objects are going to be changed but also what are the changes
+
+<SchemaCompareDifferences images>
+<SchemaCompareDifferencesDetails images>
+
+Before hitting "Update" you might want to go the Schema compare options and uncheck "Block on possible data loss" because if you want to impact the changes made in another branch you might want to accept that data will be lost.
+
+#### ProcUpdater
+
+Schema compare it's perfect at his job, it can create a databse from scratch, it can create users, schemas, it can handle table and column renames, everything. But it can slow down your development process. The compare option might take 3 minutes and the Update itself another 3 minutes, if you do that ten times a day you would have waste 1 hour waiting for DB syncing.
+
+So I created an small app called, drum rolls... [ProcUpdater](https://github.com/kblok/ProcUpdater). ProcUpdate is a console app which will watch your Stored Procedures folder and impact your stored procedures changes immediately. It can even impact all the stored procedures changes when you switch branches. It's not perfect, it won't impact table changes, but it could save you 1 hour a day! 
 
 ### CI
 
-### Some final tips
+This workflow fits perfectly if you need to run integration tests in a CI environment. If you use a Windows based CI environment like [AppVeyor](https://www.appveyor.com/) you will be able to deploy your database in that environment every time you build a branch. You just need to run `msdeploy.exe`, it could be something like this:
+
+```
+msbuild "NorthwindDB.sqlproj" /p:Configuration=Release /p:Platform="Any CPU"
+"C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe" -verb:sync -source:dbDacFx="NorthwindDB.dacpac" -dest:dbDacFx="...",dacpacAction=Deploy,CreateNewDatabase=True'
+```
+
+### Final words
+
+I use to say that most of the time you can hide complexity but not remove it. If you project is using lots of stored procedures we cannot remove the complexity of its nature, and we didn't talk about how to deal with stating environments, but we can speed up the process and make your team much more productive.
+
+
