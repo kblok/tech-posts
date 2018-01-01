@@ -38,21 +38,21 @@ I found in Visual Studio the solution for this problem. Lets take a look at this
 
 Lets use our well-known Northwind database as an example. Lets create a new "SQL Server Database project"
 
-![New Project](https://raw.githubusercontent.com/kblok/tech-posts/master/images/newproject.png)
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/newproject.png" width="800px">
 
 #### Import your current database
 
 I bet that you already have a database, if so, lets import all the database definition using the import tool:
 
-![Import option](https://raw.githubusercontent.com/kblok/tech-posts/master/images/importoption.png)
-  
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/importoption.png" width="600px">
+
 Then you will need to setup the database connnection and import settings, lets keep this simple:
 
-![Import wizard](https://raw.githubusercontent.com/kblok/tech-posts/master/images/importwizard.png)
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/importwizard.png" width="600px">
+
+Voilà! You know have yur database ready to be committed into your repository.
  
- Voilà! You know have yur database ready to be committed into your repository.
- 
- ![DB project](https://raw.githubusercontent.com/kblok/tech-posts/master/images/dbproject.png)
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/dbproject.png" width="400px">
  
 ### Decentralized
 
@@ -79,7 +79,7 @@ You might not know but if you have Visual Studio installed there is a high chanc
 
 <SQL Server object explorer Image>
   
-If you don't find your LocalDB you can see how to install it (here)[https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-2016-express-localdb]. There are another versions you can install, for instance the full (Microsoft SQL Server Developer Edition)[https://blogs.technet.microsoft.com/dataplatforminsider/2016/03/31/microsoft-sql-server-developer-edition-is-now-free/]
+If you don't find your LocalDB you can see how to install it [here](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/sql-server-2016-express-localdb). There are another versions you can install, for instance the full [Microsoft SQL Server Developer Edition](https://blogs.technet.microsoft.com/dataplatforminsider/2016/03/31/microsoft-sql-server-developer-edition-is-now-free/)
 
 ##### Pros
 * Your localDB is just there you just need to use it
@@ -100,44 +100,46 @@ As each developer now would have his own database having data to create a create
 
 First lets create a Data folder where we'll save all our insert script data.
 
-<Create data folder image>
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/CreateDataFolder.png" height="200px">
   
-(SQL Server Management Studio)[https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms] has very cool tool to generate scripts, it is call... drum rolls... Generate Scripts!
+[SQL Server Management Studio](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms) has very cool tool to generate scripts, it is call... drum rolls... Generate Scripts!
  
-<Generate scripts image>
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/GenerateScripts.png" height="400px">
   
-Once there we need to pick the tables we wan't to generate:
+Once there we need to pick the tables we 
+to generate:
  
-<PickTable images>
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/PickTables.png" width="600px">
   
 Then we select the location, lets select the data folder we created on the SQL project
 
-<Select location image>
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/SelectLocation.png" width="600px">
 
 We have to go to the Advanced option and select that we only want the data
 
-<setup data only>
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/SetupDataOnly.png" width="400px">
   
 And we are done!
 
-<voila image>
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/Voila.png" width="600px">
   
 Now if we go back to the SQL Project we'll see all the scripts we just generated, lets include those files in the project
 
-<AddScriptsToProject image>
-<AddScriptsToProject2 image>
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/AddScriptsToProject.png" height="200px">
+
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/AddScriptsToProject2.png" height="200px">
  
 By default, when we include files in a project, the Build Action is set to **Build**, but as these files are just insert scripts we need to set them to **None**
 
-<DoNotBuildDataScripts image>
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/DoNotBuildDataScripts.png" height="200px">
   
 So, How do we make use of these scripts? We need to create a Post Deployment Script and include all these inserts there
 
-<PostScriptFile image>
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/PostScriptFile.png" width="800px">
   
 So now we can complete this file with all the insert scripts
 
-<CompletePostBuildScript image>
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/CompletePostBuildScript.png" width="800px">
   
 ### DB Syncing
 
@@ -148,17 +150,16 @@ Perfect! Now we have a SQL Project, we our tables, our stored procedures and eve
 The publish tool is the tool you would use when you want to create the database from scratch. So lets go to the publish option:
 
 
-<publish option>
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/Publish Option.png" width="400px">
   
 
 Once there we just need to pick our connection string and the destination database
 
-
-<Publish Select Database image>
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/Publish Select Database.png" width="400px">
  
 Under the advanced sections there are some interesting options, like "Always re-create database" or "Block incremental deployment if data loss might occur"
 
-<Publish Advanced image>
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/Publish Advanced.png" width="400px">
 
 Then just hit publish and voilà you have a new database with all your tables populated and ready to use!
 
@@ -166,12 +167,13 @@ Then just hit publish and voilà you have a new database with all your tables po
 
 The compare tool will be the option that you would use every day, as you might guess, it will compare your SQL code and your database and impact those changes:
 
-<Schema compare option>
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/SchemaCompareOption.png" width="400px">
 
 Once there you will be able to see not only which objects are going to be changed but also what are the changes
 
-<SchemaCompareDifferences images>
-<SchemaCompareDifferencesDetails images>
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/SchemaCompareDifferences.png" width="800px">
+
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/SchemaCompareDifferencesDetails.png" width="800px">
 
 Before hitting "Update" you might want to go the Schema compare options and uncheck "Block on possible data loss" because if you want to impact the changes made in another branch you might want to accept that data will be lost.
 
