@@ -15,7 +15,8 @@ So, if one developer makes a change in the DEV database it will affect others de
 
 ### Lack of Source control
 Maybe you’ve never thought about this but source control plays an important part in your team’s productivity. The easier you can integrate your code, track changes or switch between tasks the more productive you are going to be.
-Very few teams put their database under source control, how would you do that? Don’t worry, we'll get there.
+
+Very few teams put their database under source control, How would you do that? Don’t worry, we'll get there.
 
 ### No debugging
 Are you telling me that people debug procedures? Yeah... I think only two developers do that, but it's possible.
@@ -25,7 +26,9 @@ These are some tips and tools I've found with my team that helped us to stay pro
 
 ### The database is part of your code
 Even if you don't use stored procedures your tables definitions are part of your code. Ok, you might say "I'm a code first developer, I don’t care about the database" and that's fine, this post won't help you at all.
+
 But if you are a "database first" developer, the table definition should be part of your code. If you add a new field in a table you will need to create a branch, add that new field to the table definition and commit everything into the same branch as the code using that new field.
+
 The benefit is quite obvious, when your PR is accepted not only your code will be merged but also that new field in the database.
 
 #### How can this be accomplished?
@@ -41,7 +44,7 @@ Let's use our well-known Northwind database as an example. Just go to Visual Stu
 
 I bet you already have a database, if so, you will be able to import the whole database definition using the import tool.
 
-<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/working-with-stored-procedures/importoption.png" width="600px">
+<img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/working-with-stored-procedures/importoption.png" width="400px">
 
 Then you will need to setup the database connection and import settings, let's keep this simple.
 
@@ -51,14 +54,14 @@ Voilà! You now have your database ready to be committed into your repository.
 
 <img src="https://raw.githubusercontent.com/kblok/tech-posts/master/images/working-with-stored-procedures/dbproject.png" width="400px">
 
-### Decentralized
+### One developer, one database
 
 Perfect, we have our database under source control, now what?
 
 
 The next thing you must have is one database per developer where she can have the freedom to update/recreate it when needed. You can accomplish this in three ways, ok there might be more ways but these are the three I recommend:
 
-#### One database in a shared server
+#### Shared server
 This could be the easiest solution if you already have one server used by all developers. You could use a naming convention to identify each database, something super smart such as `<MyProject>Dev<DevName>`.
 
 ##### Pros
@@ -95,7 +98,7 @@ When running Visual Studio on a virtual machine on Mac OS, running your SQL Serv
 
 You can read about running SQL Server on Docker [here](https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker).
 
-### You need data to work with
+### Developers need data
 
 As each developer would have her own database, having data to create an useful and ready to use database becomes another very important piece of the project. It's very easy to create all this data if you already have an existing database.
 
