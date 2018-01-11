@@ -11,12 +11,12 @@ What I noticed is that sometimes, even when coding a feature in a stored procedu
 ### A shared database
 Teams tend to have only one SQL Server with a bunch of different versions of the same database, e.g. Dev, Test or CI.
 
-So, if one developer makes a change in the DEV database it will affect others developers **immediately**. Some teams will try to mitigate this problem by altering the database as little as possible, and @channel’ing at Slack, sending an email or even yell in the office when they do so.
+So, if one developer makes a change in the DEV database it will affect others developers **immediately**. Some teams will try to mitigate this problem by altering the database as little as possible, and @channel’ing at Slack, sending an email or even yelling in the office when they do so.
 
 ### Lack of Source control
 Maybe you’ve never thought about this but source control plays an important part in your team’s productivity. The easier you can integrate your code, track changes or switch between tasks the more productive you are going to be.
 
-Very few teams put their database under source control, How would you do that? Don’t worry, we'll get there.
+Very few teams put their database under source control, how would you do that? Don’t worry, we'll get there.
 
 ### No debugging
 Are you telling me that people debug procedures? Yeah... I think only two developers do that, but it's possible.
@@ -66,7 +66,7 @@ This could be the easiest solution if you already have one server used by all de
 
 ##### Pros
 * There is no much more to setup, just create one database per dev and that's all.
-* Collaboration. Devs can access each other database making it easier to collaborate.
+* Collaboration. Devs can access each other's database making it easier to collaborate.
 
 ##### Cons
 * If you are not using a shared server right now you might need to setup one server and think about security, VPNs and things like that.
@@ -147,7 +147,7 @@ So now we can complete this file with all the insert scripts we created before.
  
 ### DB Syncing
 
-Perfect! We have a SQL Project, with our tables, stored procedures and even our test data! Now we have to use it.
+Perfect! We have a SQL Project with our tables, stored procedures and even our test data! Now we have to use it.
 
 #### Publish tool
 
